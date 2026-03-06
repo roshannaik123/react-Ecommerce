@@ -21,8 +21,8 @@ useEffect(() => {
 
   useEffect(() => {
     let componentMounted = true;
-        if (componentMounted) {
-          setFilter(products); 
+      if (componentMounted) {
+        setFilter(products); 
     };
     return () => {
       componentMounted = false; 
