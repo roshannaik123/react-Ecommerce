@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../store/cartContext";
 import AuthContext from "../store/auth.context";
+import { useGetAllProductsQuery } from "../store/apiSlice";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -12,24 +13,17 @@ const Products = () => {
   const {dispatch}=useContext(CartContext);
   const authCtx=useContext(AuthContext);
   const navigate=useNavigate();
+  const { data: products = [], isLoading, error } = useGetAllProductsQuery();
+
+useEffect(() => {
+  setData(products);
+}, [products]);
+
   useEffect(() => {
     let componentMounted = true;
-
-    const getProducts = async () => {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products/");
-        const products = await response.json();
         if (componentMounted) {
-          setData(products);
           setFilter(products); 
-        }
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
     };
-
-    getProducts();
-
     return () => {
       componentMounted = false; 
     };
@@ -81,7 +75,7 @@ const Products = () => {
                   <Link to={`/product/${product.id}`} className="btn btn-dark m-1">Buy Now</Link>
                   <button className="btn btn-dark m-1" onClick={() => {
                     toast.success("Added to cart");
-                     addProduct(product); // Ensure this function exists
+                     addProduct(product); 
                   }}>
                     Add to Cart
                   </button>
