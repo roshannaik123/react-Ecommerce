@@ -34,14 +34,19 @@ const Login = () => {
       authCtx.isLoggedIn=true;
     //   authCtx.login(data.idToken);
       authCtx.login(data.idToken, data.localId); 
-      console.log(data);
+       emailInputRef.current.value = "";
+    passwordInputRef.current.value = ""; 
+       
       if (!res.ok) {
         throw new Error(data.error?.message || "Authentication failed");
       }
+
       alert(isLogin ? "Sign In Successful!" : "Sign Up Successful!");
       if (isLogin) {
+      
         navigate("/"); 
-      }
+ 
+       }
     } catch (err) {
       alert(err.message);
     }
@@ -51,7 +56,7 @@ const changePassword=()=>{
 }
   return (
     <>
-      <Navbar />
+      <Navbar  />
       <div className="container my-3 py-3">
         <h1 className="text-center">{isLogin ? "Login" : "Sign Up"}</h1>
         <hr />
@@ -80,25 +85,26 @@ const changePassword=()=>{
                   required
                 />
               </div>
-              <div className="my-3">
-                <p>
-                  {isLogin ? "New Here?" : "Already have an account?"}{" "}
-                  <button 
-                    type="button"
-                    className="btn btn-link text-info p-0"
-                    onClick={() => setIsLogin((prev) => !prev)}
-                  >
-                    {isLogin ? "Register" : "Login"}
-                  </button>
-                </p>
-              </div>
-              <div className="text-center">
+              
+              <div>
                 <button className="my-2 mx-auto btn btn-dark" type="submit">
                   {isLogin ? "Login" : "Sign Up"}                  
                 </button>
                 
-                <button onClick={changePassword}>Change Password</button>
+                <button className="mx-2 p-1 rounded" onClick={changePassword}>Change Password</button>
                 {console.log(authCtx.isLoggedIn)}
+              </div>
+              <div className="my-3 flex items-center gap-2">
+                <span >
+                  {isLogin ? "New Here?" : "Already have an account?"}{" "}
+                    </span>
+                  <button type="button" 
+                    className="text-red-500 cursor-pointer btn btn-link"
+                    onClick={() => setIsLogin((prev) => !prev)}
+                  >
+                    {isLogin ? "Register" : "Login"}
+                  </button>
+            
               </div>
             </form>
           </div>
