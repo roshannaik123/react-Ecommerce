@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 const AuthContext = React.createContext({
-  token: '',
+  token: "",
   userId: null,
   isLoggedIn: false,
   login: (token, userId) => {},
-  logout: () => {}
+  logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -13,9 +13,12 @@ export const AuthContextProvider = (props) => {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    const storedUserId = localStorage.getItem('userId');
-    console.log('AuthContext init - stored data:', {storedToken, storedUserId});
+    const storedToken = localStorage.getItem("token");
+    const storedUserId = localStorage.getItem("userId");
+    console.log("AuthContext init - stored data:", {
+      storedToken,
+      storedUserId,
+    });
     if (storedToken && storedUserId) {
       setToken(storedToken);
       setUserId(storedUserId);
@@ -23,25 +26,25 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   const loginHandler = (token, userId) => {
-    console.log('Login handler executing with:', {token, userId});
+    console.log("Login handler executing with:", { token, userId });
     if (!token || !userId) {
-      console.error('Invalid login parameters');
+      console.error("Invalid login parameters");
       return;
     }
-    
+
     setToken(token);
     setUserId(userId);
-    localStorage.setItem('token', token);
-    localStorage.setItem('userId', userId);
-    console.log('Login successful - data saved to localStorage');
+    localStorage.setItem("token", token);
+    localStorage.setItem("userId", userId);
+    console.log("Login successful - data saved to localStorage");
   };
-  
+
   const logoutHandler = () => {
-    console.log('Logout handler executing');
+    console.log("Logout handler executing");
     setToken(null);
     setUserId(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
   };
 
   const contextValue = {
@@ -49,7 +52,7 @@ export const AuthContextProvider = (props) => {
     userId,
     isLoggedIn: !!token,
     login: loginHandler,
-    logout: logoutHandler
+    logout: logoutHandler,
   };
 
   return (

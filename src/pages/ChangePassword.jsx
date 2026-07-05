@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export const ChangePassword = () => {
- return (
+  return (
     <div>
-<h1>Change Password</h1>
+      <h1>Change Password</h1>
     </div>
-  )
-}
+  );
+};
