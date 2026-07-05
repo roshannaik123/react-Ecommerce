@@ -26,7 +26,10 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} id="navbarSupportedContent">
+        <div
+          className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav m-auto my-2 text-center">
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
@@ -51,7 +54,10 @@ const Navbar = () => {
           </ul>
           <div className="buttons text-center">
             {isLoggedIn ? (
-              <button onClick={logoutHandler} className="btn btn-outline-dark m-2">
+              <button
+                onClick={logoutHandler}
+                className="btn btn-outline-dark m-2"
+              >
                 <i className="fas fa-sign-out-alt mr-1"></i> Logout
               </button>
             ) : (
@@ -63,7 +69,8 @@ const Navbar = () => {
               <i className="fas fa-user-plus mr-1"></i> Register
             </NavLink> */}
             <NavLink to="/cart" className="btn btn-outline-dark m-2">
-              <i className="fas fa-shopping-cart mr-1"></i> {cart.length === 0 ? "Cart" : `Cart (${cart.length})`}
+              <i className="fas fa-shopping-cart mr-1"></i>{" "}
+              {cart.length === 0 ? "Cart" : `Cart (${cart.length})`}
             </NavLink>
           </div>
         </div>

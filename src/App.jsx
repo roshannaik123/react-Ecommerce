@@ -14,23 +14,28 @@ import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./store/cartContext";
 import { AuthContextProvider } from "./store/auth.context";
 import { productsApi } from "./store/apiSlice";
+import AboutPage from "./pages/AboutPage";
+import Contact from "./pages/Contact";
 
 const App = () => {
   return (
     <ApiProvider api={productsApi}>
       <AuthContextProvider>
         <CartProvider>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/product" element={<Products />} />
-              <Route path="/product/:id" element={<Product />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/changePassword" element={<ChangePassword />} />
-              <Route path="/checkout" element={<Checkout />} />
-            </Routes>
-            <Toaster />
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product" element={<Products />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<Contact />} />
+
+            <Route path="/login" element={<Login />} />
+            <Route path="/changePassword" element={<ChangePassword />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+          <Toaster />
         </CartProvider>
       </AuthContextProvider>
     </ApiProvider>
